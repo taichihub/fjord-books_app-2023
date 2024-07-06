@@ -1,0 +1,38 @@
+ja:
+  app:
+    title: "本アプリ"
+  books:
+    index:
+      header: "本の一覧"
+      show: "この本を表示"
+      new: "新しい本"
+    new:
+      header: "新しい本"
+      back: "本の一覧に戻る"
+    show:
+      title: "タイトル"
+      memo: "メモ"
+      author: "著者"
+      picture: "画像"
+      destroy: "この本を削除"
+      edit: "この本を編集"
+      back: "本の一覧に戻る"
+    edit:
+      header: "本を編集"
+      show: "この本を表示"
+      back: "本の一覧に戻る"
+    notices:
+      created: "本が正常に作成されました。"
+      updated: "本が正常に更新されました。"
+      destroyed: "本が正常に削除されました。"
+    form:
+      title_label: "タイトル"
+      memo_label: "メモ"
+      author_label: "著者"
+      picture_label: "画像"
+      create_button: "本を作成"
+      update_button: "本を更新"
+  errors:
+    error: "エラー"
+  form:
+    error_message: "のエラーにより保存できませんでした："
