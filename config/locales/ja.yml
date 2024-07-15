@@ -10,10 +10,6 @@ ja:
       header: "新しい本"
       back: "本の一覧に戻る"
     show:
-      title: "タイトル"
-      memo: "メモ"
-      author: "著者"
-      picture: "画像"
       destroy: "この本を削除"
       edit: "この本を編集"
       back: "本の一覧に戻る"
@@ -36,3 +32,10 @@ ja:
     error: "エラー"
   form:
     error_message: "のエラーにより保存できませんでした："
+  activerecord:
+    attributes:
+      book:
+        title: "タイトル"
+        memo: "メモ"
+        author: "著者"
+        picture: "画像"
