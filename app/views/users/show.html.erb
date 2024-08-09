@@ -1,0 +1,22 @@
+<h1><%= t(".title") %></h1>
+<div class="user__info">
+  <h3><%= @user.name %>さんの情報</h3>
+  <div><%= t(".name") %>&nbsp;:&nbsp;<%= @user.name %></div>
+  <div><%= t(".email") %>&nbsp;:&nbsp;<%= @user.email %></div>
+  <div>
+    <%= t(".post_code") %>&nbsp;:&nbsp;
+    <%= @user.post_code.present? ? @user.post_code : t(".not_provided") %>
+  </div>
+  <div>
+    <%= t(".address") %>&nbsp;:&nbsp;
+    <%= @user.address.present? ? @user.address : t(".not_provided") %>
+  </div>
+  <div>
+    <%= t(".self_introduction") %>&nbsp;:&nbsp;
+    <%= @user.self_introduction.present? ? @user.self_introduction : t(".not_provided") %>
+  </div>
+</div>
+<% if @user == current_user %>
+  <div><%= link_to t(".edit"), edit_user_path(@user) %></div>
+<% end %>
+<div><%= link_to t(".back"), users_path %></div>
