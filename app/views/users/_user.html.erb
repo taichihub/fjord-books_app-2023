@@ -25,4 +25,13 @@
     <%= user.self_introduction %>
   </p>
 
+  <p>
+    <% if user.profile_image.attached? %>
+      <strong><%= User.human_attribute_name(:profile_image) %>:</strong>
+      <%= image_tag user.profile_image, style: "max-width: 200px; max-height: 200px;" %>
+    <% else %>
+      <%= image_tag "no_image.png", style: "max-width: 200px; max-height: 200px;" %>
+    <% end %>
+  </p>
+
 </div>
