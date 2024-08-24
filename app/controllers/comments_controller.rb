@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CommentsController < ApplicationController
   before_action :set_commentable
   before_action :set_comment, only: %i[edit update destroy]
@@ -42,9 +44,10 @@ class CommentsController < ApplicationController
 
   def find_commentable
     params.each do |name, value|
-      if name == "book_id"
+      case name
+      when 'book_id'
         return Book.find(value)
-      elsif name == "report_id"
+      when 'report_id'
         return Report.find(value)
       end
     end
