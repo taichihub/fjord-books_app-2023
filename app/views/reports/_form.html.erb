@@ -1,0 +1,17 @@
+<%= form_with(model: report) do |form| %>
+  <%= render 'shared/error_messages', model: report %>
+  
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title, required: true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :content %>
+    <%= form.text_area :content, required: true %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

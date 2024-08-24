@@ -1,0 +1,23 @@
+<div>
+  <div>
+    <strong><%= t('activerecord.attributes.report.title') %>:</strong>
+    <%= report.title %>
+  </div>
+
+  <div>
+    <strong><%= t('activerecord.attributes.report.content') %>:</strong>
+    <%= report.content %>
+  </div>
+
+  <div>
+    <strong><%= t('activerecord.attributes.report.name') %>:</strong>
+    <%= report.user.name %>
+  </div>
+
+  <div>
+    <strong><%= t('activerecord.attributes.report.created_at') %>:</strong>
+    <%= report.created_at.strftime('%Y年%m月%d日') %>
+  </div>
+  
+  <br>
+</div>
