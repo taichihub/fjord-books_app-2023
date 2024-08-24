@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class UsersController < ApplicationController
-  before_action :authenticate_user!
   before_action :set_user, only: %i[show edit update]
 
   def index
@@ -15,13 +14,13 @@ class UsersController < ApplicationController
   end
 
   def update
+    if @user != current_user
+      redirect_to user_path(current_user)
+      return
+    end
+
     if @user.update(user_params)
-      if email_or_password_changed?
-        sign_out @user
-        redirect_to new_user_session_path, notice: t('users.update.relogin')
-      else
-        redirect_to user_path(@user), notice: t('users.update.success')
-      end
+      redirect_to user_path(@user), notice: t('users.update.success')
     else
       render :edit
     end
@@ -35,9 +34,5 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation, :post_code, :address, :self_introduction)
-  end
-
-  def email_or_password_changed?
-    @user.previous_changes.key?('email') || @user.previous_changes.key?('encrypted_password')
   end
 end

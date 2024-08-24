@@ -1,5 +1,10 @@
 ja:
   users:
+    common:
+      book_index: "本一覧画面"
+      user_index: "ユーザー一覧画面"
+      my_page: "マイページ"
+      logout: "ログアウト"
     index:
       title: "ユーザー一覧"
       name: "名前"
@@ -8,6 +13,7 @@ ja:
       not_provided: "未入力"
     show:
       title: "ユーザー詳細"
+      user_info: "%{name}さんの情報"
       name: "名前"
       email: "メールアドレス"
       post_code: "郵便番号"

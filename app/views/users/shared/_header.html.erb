@@ -1,6 +1,6 @@
 <% if user_signed_in? %>
-  <%= link_to '本一覧画面', books_path %>
-  <%= link_to 'ユーザー一覧画面', users_path %>
-  <%= link_to 'マイページ', user_path(current_user) %>
-  <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
+  <%= link_to t('users.common.book_index'), books_path %>
+  <%= link_to t('users.common.user_index'), users_path %>
+  <%= link_to t('users.common.my_page'), user_path(current_user) %>
+  <%= link_to t('users.common.logout'), destroy_user_session_path, method: :delete %>
 <% end %>

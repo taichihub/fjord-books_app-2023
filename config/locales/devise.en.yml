@@ -1,5 +1,3 @@
-# Additional translations at https://github.com/heartcombo/devise/wiki/I18n
-
 en:
   devise:
     confirmations:
@@ -21,6 +19,11 @@ en:
         subject: "Confirmation instructions"
       reset_password_instructions:
         subject: "Reset password instructions"
+        greeting: "Hello %{email}!"
+        instruction: "A password reset link has been requested. You can change your password using the link below."
+        change_password: "Change your password"
+        ignore_request: "If you did not request this, please ignore this email."
+        not_changed_until: "Your password will not be changed until you create a new one using the link above."
       unlock_instructions:
         subject: "Unlock instructions"
       email_changed:
