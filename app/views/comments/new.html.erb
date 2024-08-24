@@ -1,0 +1,5 @@
+<h1><%= t('views.common.title_new', name: Comment.model_name.human) %></h1>
+
+<%= render 'form', model: @comment %>
+
+<%= render 'button', model: @comment %>
