@@ -4,13 +4,13 @@ class UsersController < ApplicationController
   before_action :set_user, only: %i[show edit update]
 
   def index
-    @users = User.page(params[:page]).per(5)
+    @users = User.order(created_at: :desc).page(params[:page]).per(5)
   end
 
   def show; end
 
   def edit
-    redirect_to user_path(current_user) unless @user == current_user
+    redirect_to user_path(current_user) if @user != current_user
   end
 
   def update
