@@ -8,8 +8,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_one_attached :profile_image
-  validates :profile_image, content_type: { in: PROFILE_IMAGE_EXTENSIONS },
-                            size: { less_than: MAX_PROFILE_IMAGE_SIZE }
+  validates :profile_image, content_type: { in: PROFILE_IMAGE_EXTENSIONS }, size: { less_than: MAX_PROFILE_IMAGE_SIZE }
 
   def resized_profile_image
     profile_image.variant(resize_to_limit: RESIZE_IMAGE_SIZE).processed
