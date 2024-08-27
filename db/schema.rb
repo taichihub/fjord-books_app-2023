@@ -28,7 +28,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_08_09_042810) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "name", default: "BooksAppUser", null: false
+    t.string "name", null: false
     t.string "post_code"
     t.string "address"
     t.string "self_introduction", limit: 200

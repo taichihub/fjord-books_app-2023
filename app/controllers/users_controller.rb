@@ -14,15 +14,14 @@ class UsersController < ApplicationController
   end
 
   def update
-    if @user != current_user
-      redirect_to user_path(current_user)
-      return
-    end
-
-    if @user.update(user_params)
-      redirect_to user_path(@user), notice: t('users.update.success')
+    if @user == current_user
+      if @user.update(user_params)
+        redirect_to user_path(@user), notice: t('users.update.success')
+      else
+        render :edit, status: :unprocessable_entity, alert: t('users.update.failure')
+      end
     else
-      render :edit
+      redirect_to user_path(current_user)
     end
   end
 
