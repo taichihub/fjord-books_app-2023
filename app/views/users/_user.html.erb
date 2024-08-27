@@ -28,10 +28,10 @@
   <p>
     <% if user.profile_image.attached? %>
       <strong><%= User.human_attribute_name(:profile_image) %>:</strong>
-      <%= image_tag user.profile_image, class: "user__profile-image" %>
+      <%= image_tag user.resized_profile_image, class: "user__profile-image" %>
     <% else %>
       <%= image_tag "no_image.png", class: "user__profile-image" %>
     <% end %>
   </p>
-
+  
 </div>
