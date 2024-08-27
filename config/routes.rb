@@ -4,4 +4,5 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
+  get 'change_locale/:locale', to: 'locales#change', as: :change_locale
 end
