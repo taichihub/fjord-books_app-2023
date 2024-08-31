@@ -1,0 +1,6 @@
+<% if user_signed_in? %>
+  <%= link_to t('users.common.book_index'), books_path %>
+  <%= link_to t('users.common.user_index'), users_path %>
+  <%= link_to t('users.common.my_page'), user_path(current_user) %>
+  <%= link_to t('users.common.logout'), destroy_user_session_path, method: :delete %>
+<% end %>

@@ -1,0 +1,42 @@
+<h1><%= t(".title")%></h1>
+<%= form_with model: @user, local: true do |form| %>
+  <div>
+    <%= form.label :name, t(".name") %>
+    <%= form.text_field :name, required: true %>
+  </div>
+  <div>
+    <%= form.label :email, t(".email") %>
+    <%= form.text_field :email %>
+  </div>
+  <div>
+  <div>
+    <%= form.label :password, t(".new_password") %>
+    <%= form.password_field :password %>
+    <% if @user.errors[:password].any? %>
+      <div class="error"><%= @user.errors.full_messages_for(:password).join(", ") %></div>
+    <% end %>
+  </div>
+  <div>
+    <%= form.label :password_confirmation, t(".new_password_confirmation") %>
+    <%= form.password_field :password_confirmation %>
+    <% if @user.errors[:password_confirmation].any? %>
+      <div class="error"><%= @user.errors.full_messages_for(:password_confirmation).join(", ") %></div>
+    <% end %>
+  </div>
+  <div>
+    <%= form.label :post_code, t(".post_code") %>
+    <%= form.text_field :post_code %>
+  </div>
+  <div>
+    <%= form.label :address, t(".address") %>
+    <%= form.text_field :address %>
+  </div>
+  <div>
+    <%= form.label :self_introduction, t(".self_introduction") %>
+    <%= form.text_area :self_introduction %>
+  </div>
+  <div>
+    <%= form.submit t(".submit") %>
+  </div>
+<% end %>
+<%= link_to t(".back"), user_path %>

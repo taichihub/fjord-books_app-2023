@@ -1,0 +1,38 @@
+ja:
+  users:
+    common:
+      book_index: "本一覧画面"
+      user_index: "ユーザー一覧画面"
+      my_page: "マイページ"
+      logout: "ログアウト"
+    index:
+      title: "ユーザー一覧"
+      name: "名前"
+      email: "メールアドレス"
+      self_introduction: "自己紹介文"
+      not_provided: "未入力"
+    show:
+      title: "ユーザー詳細"
+      user_info: "%{name}さんの情報"
+      name: "名前"
+      email: "メールアドレス"
+      post_code: "郵便番号"
+      address: "住所"
+      self_introduction: "自己紹介文"
+      not_provided: "未入力"
+      edit: "編集"
+      back: "戻る"
+    edit:
+      title: "ユーザー情報編集"
+      name: "名前"
+      email: "メールアドレス"
+      new_password: "新パスワード"
+      new_password_confirmation: "新パスワード(確認用)"
+      post_code: "郵便番号"
+      address: "住所"
+      self_introduction: "自己紹介文(200文字以内)"
+      submit: "更新"
+      back: "戻る"
+    update:
+      success: "ユーザー情報を更新しました"
+      relogin: "更新に成功しました。変更後のメールアドレス・パスワードで再度ログインしてください"

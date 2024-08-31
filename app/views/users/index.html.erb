@@ -1,0 +1,18 @@
+<h1><%= t(".title") %></h1>
+<div class="users__container">
+  <% @users.each do |user| %>
+    <div class="user__container">
+      <%= link_to user_path(user) do %>
+        <div><%= t(".name") %>&nbsp;:&nbsp;<%= user.name %></div>
+        <div><%= t(".email") %>&nbsp;:&nbsp;<%= user.email %></div>
+        <div>
+          <%= t(".self_introduction") %>&nbsp;:&nbsp;
+          <%= user.self_introduction.present? ? user.self_introduction : t(".not_provided") %>
+        </div>
+        <br>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+
+<%= paginate @users %>
