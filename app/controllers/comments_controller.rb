@@ -3,6 +3,7 @@
 class CommentsController < ApplicationController
   before_action :set_commentable
   before_action :set_comment, only: %i[edit update destroy]
+  before_action :check_user_permission, only: %i[edit update destroy]
 
   def new
     @comment = @commentable.comments.new
@@ -44,17 +45,17 @@ class CommentsController < ApplicationController
 
   def find_commentable
     params.each do |name, value|
-      case name
-      when 'book_id'
-        return Book.find(value)
-      when 'report_id'
-        return Report.find(value)
-      end
+      return Book.find(value) if name == 'book_id'
+      return Report.find(value) if name == 'report_id'
     end
     nil
   end
 
   def comment_params
     params.require(:comment).permit(:content).merge(user: current_user)
+  end
+
+  def check_user_permission
+    return redirect_to @commentable if current_user.id != @comment.user_id
   end
 end
