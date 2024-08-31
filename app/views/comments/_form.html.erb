@@ -1,7 +1,7 @@
 <%= form_with(model: @comment, url: form_url(@commentable, @comment), local: true) do |form| %>
 
   <div class="field">
-    <%= form.label :content, t('activerecord.attributes.comment.content') %>
+    <%= form.label :content, Comment.human_attribute_name(:content) %>
     <%= form.text_area :content, required: true %>
   </div>
 
