@@ -1,5 +1,1 @@
-<% if model.commentable.is_a?(Book) %>
-  <%= link_to t('views.common.back', name: Book.model_name.human.downcase), book_path(model.commentable), class: "button" %>
-<% elsif model.commentable.is_a?(Report) %>
-  <%= link_to t('views.common.back', name: Report.model_name.human.downcase), report_path(model.commentable), class: "button" %>
-<% end %>
+<%= link_to t('views.common.back', name: model.commentable.class.model_name.human.downcase), polymorphic_path(model.commentable), class: "button" %>
