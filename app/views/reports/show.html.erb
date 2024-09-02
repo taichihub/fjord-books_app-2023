@@ -4,7 +4,7 @@
   <%= render @report %>
 </div>
 
-<h3><%= t('activerecord.attributes.report.mentioned_reports') %></h3>
+<h3><%= t('views.reports.show.mentioned_reports') %></h3>
 <ul>
   <% @report.mentioned_reports.each do |report| %>
     <li><%= link_to report.title, report_path(report) %></li>
