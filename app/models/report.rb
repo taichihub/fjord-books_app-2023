@@ -18,4 +18,8 @@ class Report < ApplicationRecord
   def created_on
     created_at.to_date
   end
+
+  def self.extract_mentioned_report_ids(content)
+    content.scan(%r{http://localhost:3000/reports/(\d+)}).flatten.map(&:to_i)
+  end
 end
