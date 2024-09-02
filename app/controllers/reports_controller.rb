@@ -19,22 +19,28 @@ class ReportsController < ApplicationController
   def edit; end
 
   def create
-    @report = current_user.reports.new(report_params)
+    ActiveRecord::Base.transaction do
+      @report = current_user.reports.new(report_params)
 
-    if @report.save
-      create_mentions(@report)
-      redirect_to @report, notice: t('controllers.common.notice_create', name: Report.model_name.human)
-    else
-      render :new, status: :unprocessable_entity
+      if @report.save
+        create_mentions(@report)
+        redirect_to @report, notice: t('controllers.common.notice_create', name: Report.model_name.human)
+      else
+        render :new, status: :unprocessable_entity
+        raise ActiveRecord::Rollback
+      end
     end
   end
 
   def update
-    if @report.update(report_params)
-      create_mentions(@report)
-      redirect_to @report, notice: t('controllers.common.notice_update', name: Report.model_name.human)
-    else
-      render :edit, status: :unprocessable_entity
+    ActiveRecord::Base.transaction do
+      if @report.update(report_params)
+        create_mentions(@report)
+        redirect_to @report, notice: t('controllers.common.notice_update', name: Report.model_name.human)
+      else
+        render :edit, status: :unprocessable_entity
+        raise ActiveRecord::Rollback
+      end
     end
   end
 
@@ -55,13 +61,9 @@ class ReportsController < ApplicationController
 
   def create_mentions(report)
     report.report_mentions_as_mentioning.destroy_all
-    mentioned_report_ids = extract_mentioned_report_ids(report.content)
+    mentioned_report_ids = Report.extract_mentioned_report_ids(report.content).uniq
     mentioned_report_ids.each do |mentioned_report_id|
-      ReportMention.create(mentioning_report_id: report.id, mentioned_report_id:)
+      ReportMention.create(mentioning_report_id: report.id, mentioned_report_id: mentioned_report_id)
     end
-  end
-
-  def extract_mentioned_report_ids(content)
-    content.scan(%r{http://localhost:3000/reports/(\d+)}).flatten.map(&:to_i)
   end
 end
