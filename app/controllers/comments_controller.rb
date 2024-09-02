@@ -44,10 +44,8 @@ class CommentsController < ApplicationController
   end
 
   def find_commentable
-    params.each do |name, value|
-      return Book.find(value) if name == 'book_id'
-      return Report.find(value) if name == 'report_id'
-    end
+    return Book.find(params[:book_id]) if params[:book_id].present?
+    return Report.find(params[:report_id]) if params[:report_id].present?
     nil
   end
 
