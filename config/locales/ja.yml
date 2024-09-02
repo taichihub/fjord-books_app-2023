@@ -3,6 +3,8 @@ ja:
   activerecord:
     errors:
       messages:
+        content_type_invalid: "はJPG、PNG、GIFのいずれかでなければなりません。"
+        size_invalid: "のファイルサイズは15MB未満でなければなりません。"
         record_invalid: 'バリデーションに失敗しました: %{errors}'
         restrict_dependent_destroy:
           has_one: "%{record}が存在しているので削除できません"
