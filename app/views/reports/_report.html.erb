@@ -1,0 +1,23 @@
+<div>
+  <div>
+    <strong><%= Report.human_attribute_name(:title) %>:</strong>
+    <%= report.title %>
+  </div>
+
+  <div>
+    <strong><%= Report.human_attribute_name(:content) %>:</strong>
+    <%= report.content %>
+  </div>
+
+  <div>
+    <strong><%= Report.human_attribute_name(:name) %>:</strong>
+    <%= report.user.name %>
+  </div>
+
+  <div>
+    <strong><%= Report.human_attribute_name(:created_at) %>:</strong>
+    <%= l report.created_at, format: :date %>
+  </div>
+
+  <br>
+</div>

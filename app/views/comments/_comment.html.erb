@@ -1,0 +1,14 @@
+<div>
+  <div><%= model.content %></div>
+  <div>
+    <%= model.user.name.presence || model.user.email %>さん
+    <%= l model.created_at, format: :long %>
+  </div>
+  <div>
+    <% if model.user == current_user %>
+      <%= link_to t('views.common.edit', name: Comment.model_name.human.downcase), url_for([:edit, model.commentable, model]) %> |
+      <%= link_to t('views.common.destroy', name: Comment.model_name.human.downcase), url_for([model.commentable, model]), data: { turbo_method: :delete, turbo_confirm: t('views.common.delete_confirm') } %>
+    <% end %>
+  </div>
+  <br>
+</div>

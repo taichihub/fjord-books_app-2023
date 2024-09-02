@@ -1,0 +1,12 @@
+<%= form_with(model: @comment, url: polymorphic_path([@commentable, @comment]), local: true) do |form| %>
+
+  <div class="field">
+    <%= form.label :content, Comment.human_attribute_name(:content) %>
+    <%= form.text_area :content, required: true %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+
+<% end %>
