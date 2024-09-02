@@ -63,7 +63,7 @@ class ReportsController < ApplicationController
     report.report_mentions_as_mentioning.destroy_all
     mentioned_report_ids = Report.extract_mentioned_report_ids(report.content).uniq
     mentioned_report_ids.each do |mentioned_report_id|
-      ReportMention.create(mentioning_report_id: report.id, mentioned_report_id: mentioned_report_id)
+      ReportMention.create(mentioning_report_id: report.id, mentioned_report_id:)
     end
   end
 end
