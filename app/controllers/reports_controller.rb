@@ -51,6 +51,6 @@ class ReportsController < ApplicationController
   end
 
   def check_user_permission
-    return redirect_to reports_path unless current_user.id == @report.user_id
+    return redirect_to reports_path if current_user.id != @report.user_id
   end
 end
