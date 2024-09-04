@@ -11,6 +11,8 @@ class Report < ApplicationRecord
   validates :title, presence: true
   validates :content, presence: true
 
+  REPORT_ID_URL = %r{http://localhost:3000/reports/(\d+)}
+
   def editable?(target_user)
     user == target_user
   end
@@ -19,7 +21,11 @@ class Report < ApplicationRecord
     created_at.to_date
   end
 
-  def self.extract_mentioned_report_ids(content)
-    content.scan(%r{http://localhost:3000/reports/(\d+)}).flatten.map(&:to_i)
+  def create_mentions
+    report_mentions_as_mentioning.destroy_all
+    mentioned_report_ids = content.scan(REPORT_ID_URL).flatten.map(&:to_i).uniq
+    mentioned_report_ids.each do |mentioned_report_id|
+      ReportMention.create(mentioning_report_id: id, mentioned_report_id:)
+    end
   end
 end
