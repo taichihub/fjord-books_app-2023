@@ -202,9 +202,9 @@ ja:
       previous: '‹ 前'
       next: '次 ›'
       truncate: '…'
-    reports:
-      show:
-        mentioned_reports: この記事は以下の記事からリンクされています
+  reports:
+    show:
+      mentioned_reports: この記事は以下の記事からリンクされています
   controllers:
     common:
       notice_create: "%{name}が作成されました。"
