@@ -19,28 +19,36 @@ class ReportsController < ApplicationController
   def edit; end
 
   def create
-    ActiveRecord::Base.transaction do
-      @report = current_user.reports.new(report_params)
+    @report = current_user.reports.new(report_params)
 
+    saved = false
+    ActiveRecord::Base.transaction do
       if @report.save
-        create_mentions(@report)
-        redirect_to @report, notice: t('controllers.common.notice_create', name: Report.model_name.human)
-      else
-        render :new, status: :unprocessable_entity
-        raise ActiveRecord::Rollback
+        @report.create_mentions
+        saved = true
       end
+    end
+
+    if saved
+      redirect_to @report, notice: t('controllers.common.notice_create', name: Report.model_name.human)
+    else
+      render :new, status: :unprocessable_entity
     end
   end
 
   def update
+    updated = false
     ActiveRecord::Base.transaction do
       if @report.update(report_params)
-        create_mentions(@report)
-        redirect_to @report, notice: t('controllers.common.notice_update', name: Report.model_name.human)
-      else
-        render :edit, status: :unprocessable_entity
-        raise ActiveRecord::Rollback
+        @report.create_mentions
+        updated = true
       end
+    end
+
+    if updated
+      redirect_to @report, notice: t('controllers.common.notice_update', name: Report.model_name.human)
+    else
+      render :edit, status: :unprocessable_entity
     end
   end
 
@@ -57,13 +65,5 @@ class ReportsController < ApplicationController
 
   def report_params
     params.require(:report).permit(:title, :content)
-  end
-
-  def create_mentions(report)
-    report.report_mentions_as_mentioning.destroy_all
-    mentioned_report_ids = Report.extract_mentioned_report_ids(report.content).uniq
-    mentioned_report_ids.each do |mentioned_report_id|
-      ReportMention.create(mentioning_report_id: report.id, mentioned_report_id:)
-    end
   end
 end
