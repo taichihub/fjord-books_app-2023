@@ -31,11 +31,11 @@ class ReportTest < ActiveSupport::TestCase
       expected_mentions = expected_report_mentions.map(&:id).sort
       assert_equal expected_mentions, actual_mentions
     end
-  
+
     @report_one.save!
     @report_two.save!
     @report_three.save!
-    
+
     assert_mentions(@report_one, [])
     assert_mentions(@report_two, [@report_one])
     assert_mentions(@report_three, [@report_one, @report_two])
