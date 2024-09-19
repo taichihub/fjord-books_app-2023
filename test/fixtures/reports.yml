@@ -1,9 +1,15 @@
 one:
+  id: 1
   user: tanaka
   title: レポート1
-  content: サンプルのレポートです
-
+  content: "サンプルのレポートです"
 two:
+  id: 2
   user: tanaka
-  title: レポート2(編集後)
-  content: サンプルのレポートです(編集後)
+  title: レポート2
+  content: "http://localhost:3000/reports/1"
+three:
+  id: 3
+  user: tanaka
+  title: レポート3
+  content: "http://localhost:3000/reports/1  http://localhost:3000/reports/2"

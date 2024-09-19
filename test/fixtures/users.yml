@@ -1,4 +1,4 @@
 tanaka:
-  name: 田中
+  name: 田中太郎
   email: tanaka@example.com
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
