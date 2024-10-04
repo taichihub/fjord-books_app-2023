@@ -3,13 +3,6 @@
 require 'test_helper'
 
 class ReportTest < ActiveSupport::TestCase
-  def setup
-    @user = users(:tanaka)
-    @report_one = reports(:one)
-    @report_two = reports(:two)
-    @report_three = reports(:three)
-  end
-
   test '#editable?' do
     user = User.new
     report = Report.new(user:)
@@ -27,11 +20,16 @@ class ReportTest < ActiveSupport::TestCase
 
   test '#save_mentions' do
     def assert_mentions(report, expected_report_mentions)
-      actual_mentions = report.mentioning_reports.map(&:id).sort
-      expected_mentions = expected_report_mentions.map(&:id).sort
-      assert_equal expected_mentions, actual_mentions
+      assert_equal report.mentioning_reports.map(&:id).sort, expected_report_mentions.map(&:id).sort
     end
 
+    @user = users(:tanaka)
+    @report_one = reports(:one)
+    @report_two = reports(:two)
+    @report_three = reports(:three)
+    @report_four = reports(:four)
+
+    # createテスト
     @report_one.save!
     @report_two.save!
     @report_three.save!
@@ -39,5 +37,14 @@ class ReportTest < ActiveSupport::TestCase
     assert_mentions(@report_one, [])
     assert_mentions(@report_two, [@report_one])
     assert_mentions(@report_three, [@report_one, @report_two])
+
+    # updateテスト
+    @report_one.update!(content: @report_four.content)
+    assert_mentions(@report_one, [@report_two, @report_three])
+
+    # destroyテスト
+    @report_one.destroy!
+    @report_two.reload
+    assert_mentions(@report_two, [])
   end
 end
