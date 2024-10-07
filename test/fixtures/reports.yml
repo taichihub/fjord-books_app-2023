@@ -13,8 +13,3 @@ three:
   user: tanaka
   title: レポート3
   content: "http://localhost:3000/reports/1  http://localhost:3000/reports/2"
-four:
-  id: 4
-  user: tanaka
-  title: レポート4
-  content: "http://localhost:3000/reports/2  http://localhost:3000/reports/3"

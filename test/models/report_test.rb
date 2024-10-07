@@ -27,7 +27,6 @@ class ReportTest < ActiveSupport::TestCase
     @report_one = reports(:one)
     @report_two = reports(:two)
     @report_three = reports(:three)
-    @report_four = reports(:four)
 
     # createテスト
     @report_one.save!
@@ -39,7 +38,7 @@ class ReportTest < ActiveSupport::TestCase
     assert_mentions(@report_three, [@report_one, @report_two])
 
     # updateテスト
-    @report_one.update!(content: @report_four.content)
+    @report_one.update!(content: "http://localhost:3000/reports/2 http://localhost:3000/reports/3")
     assert_mentions(@report_one, [@report_two, @report_three])
 
     # destroyテスト
