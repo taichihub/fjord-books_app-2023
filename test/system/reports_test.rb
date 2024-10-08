@@ -6,7 +6,9 @@ class ReportsTest < ApplicationSystemTestCase
   def setup
     @user = users(:tanaka)
     @report = reports(:one)
+    @report.content = "メンション先なし"
     @edit_report = reports(:two)
+    @edit_report.content = "http://localhost:3000/reports/1"
   end
 
   test 'log_in_and_write_edit_destroy_report' do

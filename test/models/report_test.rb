@@ -23,27 +23,30 @@ class ReportTest < ActiveSupport::TestCase
       assert_equal report.mentioning_reports.map(&:id).sort, expected_report_mentions.map(&:id).sort
     end
 
-    @user = users(:tanaka)
-    @report_one = reports(:one)
-    @report_two = reports(:two)
-    @report_three = reports(:three)
+    user = users(:tanaka)
+    report_one = reports(:one)
+    report_one.content = "メンション先なし"
+    report_two = reports(:two)
+    report_two.content = "http://localhost:3000/reports/1"
+    report_three = reports(:three)
+    report_three.content = "http://localhost:3000/reports/1 http://localhost:3000/reports/2"
 
     # createテスト
-    @report_one.save!
-    @report_two.save!
-    @report_three.save!
+    report_one.save!
+    report_two.save!
+    report_three.save!
 
-    assert_mentions(@report_one, [])
-    assert_mentions(@report_two, [@report_one])
-    assert_mentions(@report_three, [@report_one, @report_two])
+    assert_same_elements(report_one.mentioning_reports, [])
+    assert_same_elements(report_two.mentioning_reports, [report_one])
+    assert_same_elements(report_three.mentioning_reports, [report_one, report_two])
 
     # updateテスト
-    @report_one.update!(content: "http://localhost:3000/reports/2 http://localhost:3000/reports/3")
-    assert_mentions(@report_one, [@report_two, @report_three])
+    report_one.update!(content: "http://localhost:3000/reports/2 http://localhost:3000/reports/3")
+    assert_same_elements(report_one.mentioning_reports, [report_two, report_three])
 
     # destroyテスト
-    @report_one.destroy!
-    @report_two.reload
-    assert_mentions(@report_two, [])
+    report_one.destroy!
+    report_two.reload
+    assert_same_elements(report_two.mentioning_reports, [])
   end
 end
