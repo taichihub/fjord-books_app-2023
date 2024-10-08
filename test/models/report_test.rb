@@ -19,10 +19,6 @@ class ReportTest < ActiveSupport::TestCase
   end
 
   test '#save_mentions' do
-    def assert_mentions(report, expected_report_mentions)
-      assert_equal report.mentioning_reports.map(&:id).sort, expected_report_mentions.map(&:id).sort
-    end
-
     user = users(:tanaka)
     report_one = reports(:one)
     report_one.content = "メンション先なし"
